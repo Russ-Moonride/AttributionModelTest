@@ -22,6 +22,24 @@ def initialize_storage_client():
 # Use this client for GCS operations
 storage_client = initialize_storage_client()
 
+
+
 if __name__ == '__main__':
-    st.write("Test")
+    st.markdown("<h1 style='text-align: center;'>SunPower Creative Ad Testing</h1>", unsafe_allow_html=True)
+
+    if 'full_data' not in st.session_state:
+      credentials = service_account.Credentials.from_service_account_info(
+          st.secrets["gcp_service_account"]
+      )
+      client = bigquery.Client(credentials=credentials)
+      # Modify the query
+      query = f"""
+      SELECT * FROM `tipsy-elves-405719.tipsy_elves_agg.tipsy_elves_full_funnel` 
+      WHERE Date BETWEEN '{one_year_ago}' AND CURRENT_DATE() """
+      st.session_state.full_data = pandas.read_gbq(query, credentials=credentials)
+
+    data = st.session_state.full_data
+
+    st.write(data)
+
 
