@@ -43,5 +43,6 @@ if __name__ == '__main__':
     data = st.session_state.full_data
 
     st.write(data)
+    st.write(data.columns)
 
 
