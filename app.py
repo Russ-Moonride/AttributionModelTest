@@ -6,6 +6,8 @@ from google.oauth2 import service_account
 from google.cloud import bigquery
 from google.cloud import storage
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+
 
 st.set_page_config(page_title="Attribution Model Testing",page_icon="🚀",layout="wide")
 
@@ -55,10 +57,15 @@ if __name__ == '__main__':
     grouped_df['Cost_Proportion'] = grouped_df['Cost'] / total_cost
 
     # Attribute conversions based on cost proportion
-    grouped_df['Attributed_Conversions'] = grouped_df['Conversions'] * df['Cost_Proportion']
+    grouped_df['Attributed_Conversions'] = grouped_df['Conversions'] * grouped_df['Cost_Proportion']
 
     # Similarly, attribute revenue based on cost proportion
     grouped_df['Attributed_Revenue'] = grouped_df['Revenue'] * grouped_df['Cost_Proportion']
+
+    st.write("Attribution Analysis")
+    fig, ax = plt.subplots()
+    grouped_df.plot(kind='bar', x='Platform', y=['Conversions', 'Attributed_Conversions'], ax=ax)
+    st.pyplot(fig)
 
 
 
