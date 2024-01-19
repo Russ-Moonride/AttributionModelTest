@@ -49,6 +49,17 @@ if __name__ == '__main__':
         'Revenue': 'sum'
     }).reset_index()
 
-    st.write(grouped_df)
+    total_cost = grouped_df['Cost'].sum()
+
+    # Calculate the proportion of each platform's cost
+    grouped_df['Cost_Proportion'] = grouped_df['Cost'] / total_cost
+
+    # Attribute conversions based on cost proportion
+    grouped_df['Attributed_Conversions'] = grouped_df['Conversions'] * df['Cost_Proportion']
+
+    # Similarly, attribute revenue based on cost proportion
+    grouped_df['Attributed_Revenue'] = grouped_df['Revenue'] * grouped_df['Cost_Proportion']
+
+
 
 
