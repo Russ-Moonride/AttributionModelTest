@@ -27,7 +27,7 @@ storage_client = initialize_storage_client()
 one_year_ago = (datetime.now() - timedelta(days=365)).date()
 
 if __name__ == '__main__':
-    st.markdown("<h1 style='text-align: center;'>SunPower Creative Ad Testing</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Attribution Model Testing</h1>", unsafe_allow_html=True)
 
     if 'full_data' not in st.session_state:
       credentials = service_account.Credentials.from_service_account_info(
