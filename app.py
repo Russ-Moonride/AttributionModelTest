@@ -4,6 +4,7 @@ import pandas_gbq
 from google.oauth2 import service_account
 from google.cloud import bigquery
 from google.cloud import storage
+from datetime import datetime, timedelta
 
 st.set_page_config(page_title="Attribution Model Testing",page_icon="🚀",layout="wide")
 
@@ -22,7 +23,7 @@ def initialize_storage_client():
 # Use this client for GCS operations
 storage_client = initialize_storage_client()
 
-
+one_year_ago = (datetime.now() - timedelta(days=365)).date()
 
 if __name__ == '__main__':
     st.markdown("<h1 style='text-align: center;'>SunPower Creative Ad Testing</h1>", unsafe_allow_html=True)
