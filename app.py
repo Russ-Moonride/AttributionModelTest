@@ -5,7 +5,7 @@ from google.oauth2 import service_account
 from google.cloud import bigquery
 from google.cloud import storage
 
-st.set_page_config(page_title="Attribution Model Testing",page_icon="🧑‍🚀",layout="wide")
+st.set_page_config(page_title="Attribution Model Testing",page_icon="🌚",layout="wide")
 
 credentials = service_account.Credentials.from_service_account_info(
           st.secrets["gcp_service_account"]
