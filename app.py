@@ -42,7 +42,13 @@ if __name__ == '__main__':
 
     data = st.session_state.full_data
 
-    st.write(data)
-    st.write(data.columns)
+    grouped_df = data.groupby(['Date', 'Platform']).agg({
+        'Cost': 'sum',
+        'Conversions': 'sum',
+        'Orders__Shopify': 'sum',
+        'Revenue': 'sum'
+    }).reset_index()
+
+    st.write(grouped_df)
 
 
